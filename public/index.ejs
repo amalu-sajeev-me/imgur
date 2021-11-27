@@ -11,7 +11,7 @@
   <div id="root">
     <fieldset>
       <legend>sign up</legend>
-      <form action="/new" method="post">
+      <form action="/" method="post">
         <label for="username">username
           <input name="user" type="text" id="username" value="user" autofocus>
         </label>
@@ -19,8 +19,13 @@
           <input name="pass" type="text" id="password" value="passme">
         </label>
         <button id="signup">sign up</button>
+        <% if(err) {%> 
+        <mark><%=  err  %></mark>
+        <% } %> 
       </form>
     </fieldset>
   </div>
+  <h2>
+  </h2>
 </body>
 </html>
