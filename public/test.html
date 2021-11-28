@@ -21,9 +21,8 @@
         let formData = new FormData();
         formData.append('file', file);
         fetch('https://api.imgur.com/3/upload', {
-          method: 'post',
+          method: 'POST',
           headers: { 'Authorization': 'Client-ID e86892e30f94c31' },
-          type: 'cors',
           body: formData
         }).then(data=>data.json())
         .then(data=>{
@@ -33,6 +32,7 @@
         .catch(err=>{
           console.log('baaad');
           console.log('error occured', err);
+          document.getElementById('output').innerText = JSON.stringify(err);
         })
       })
   </script>
