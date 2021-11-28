@@ -13,9 +13,10 @@ label{
 }
 fieldset{
   margin: auto;
-  border: 1px solid rgba(128, 128, 128, 0.377);
+  /* border: 1px solid rgba(128, 128, 128, 0.377); */
+  border: none;
   padding: 2rem;
-  box-shadow: 2px 3px 8px rgba(128, 128, 128, 0.452);
+  /* box-shadow: 2px 3px 8px rgba(128, 128, 128, 0.452); */
 }
 legend{
   background-color: cadetblue;
@@ -26,4 +27,28 @@ legend{
 #signup{
   display: block;
   margin: auto;
+}
+#loginmsg {
+  padding: .5em;
+  margin: 1rem;
+  border-radius: 6px;
+  background-color: aquamarine;
+}
+#loginmsg>a{
+  color: deeppink;
+  font-weight: bold;
+}
+button{
+  cursor: pointer;
+  box-shadow: 1px 2px 8px rgba(128, 128, 128, 0.753);
+  padding: .4em;
+  border: 1px solid rgba(128, 128, 128, 0.377);
+  border-radius: 7px;
+  background-color: deepskyblue;
+  color: white;
+  font-size: small;
+  font-weight: bold;
+}
+button:hover{
+  background-color: deeppink;
 }

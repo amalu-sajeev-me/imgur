@@ -1,13 +1,20 @@
 import { Router } from "express";
 import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 import bcrypt from "bcrypt";
 const db_string = `mongodb+srv://dev:passmein@cluster0.gsr2u.mongodb.net/imgur?retryWrites=true&w=majority`;
-const userSchema = new mongoose.Schema({
-  user: String,
-  pass: String,
+// MongoDB Database Schema
+const userSchema = new Schema({
+  user: {
+    type: String,
+    required: [true, "you should provide a username"],
+  },
+  pass: {
+    type: String,
+    required: [true, "you must provide a password"],
+  },
 });
-const User = mongoose.model("User", userSchema);
-
+const User = model("User", userSchema);
 const router = Router();
 router
   .get("/", (request, response) => {
@@ -19,8 +26,9 @@ router
     mongoose
       .connect(db_string)
       .then(() => {
+        console.log('mongoose connection succesfull');
         User.findOne({}).then((data) => {
-          if (data.user === user) {
+          if (data?.user === user) {
             let err = "choose a different username";
             response.render("index", { err });
           } else {
@@ -33,7 +41,9 @@ router
       .catch((err) => {
         console.log(err.message);
       });
-    // response.render('index', { err: request.body.user });
+  })
+  .get('/login', (request, response) => {
+    response.render('login', { err: false });
   });
 
 export { router as routes };
