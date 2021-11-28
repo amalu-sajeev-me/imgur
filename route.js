@@ -20,7 +20,7 @@ const router = Router();
 router
   .get("/", (request, response) => {
     const { user_id } = request.session;
-    if (user_id) response.redirect('/profile');
+    if (user_id) response.redirect("/profile");
     else response.render("index", { err: false });
   })
   .post("/", async (request, response) => {
@@ -33,12 +33,12 @@ router
         const result = await User.findOne({ user });
         if (result?.user) {
           let err = "choose a different username";
-          response.render('index', { err });
+          response.render("index", { err });
         } else {
-          request.session.user_id = result._id;
           let newUser = new User({ user, pass: hash });
+          request.session.user_id = newUser._id;
           newUser.save();
-          response.redirect('/profile');
+          response.redirect("/profile");
         }
         // User.findOne({}).then((data) => {
         //   if (data?.user === user) {
