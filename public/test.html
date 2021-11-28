@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>hello world</h1>
+  <form action="/" method="post">
+    <input type="file" name="file" id="fileUpload">
+  </form>
+  <script>
+      // 'Authorization': 'Client-ID e86892e30f94c31'
+      // https://api.imgur.com/3/image
+      // https://api.imgur.com/3/upload
+      document.getElementById('fileUpload').addEventListener('change', event => {
+        let file = event.target.files[0];
+        let formData = new FormData();
+        formData.append('file', file);
+        fetch('https://api.imgur.com/3/image', {
+          method: 'post',
+          headers: { 'Authorization': 'Client-ID e86892e30f94c31' },
+          type: 'cors',
+          body: formData
+        }).then(data=>data.json())
+        .then(console.log)
+        .catch(err=>{
+          console.log('baaad');
+          console.log('error occured', err);
+        })
+      })
+  </script>
+</body>
+</html>
