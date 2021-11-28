@@ -22,14 +22,11 @@
         formData.append('file', file);
         fetch('https://api.imgur.com/3/upload', {
           method: 'POST',
-          mode: 'no-cors',
+          // mode: 'cors',
           body: formData,
           headers: { 
-            'Authorization': 'Client-ID e86892e30f94c31',
+            'Authorization': 'Bearer 5eeae49394cd929e299785c8805bd168fc675280',
             'Accept': 'application/json',
-            'Access-Control-Allow-Headers': 'Authorization, Content-Type, Accept, X-Mashape-Authorization, IMGURPLATFORM, IMGURUIDJAFO, SESSIONCOUNT, IMGURMWBETA, IMGURMWBETAOPTIN',
-            'Access-Control-Allow-Origin':'*',
-            
           }
         })
         // .then(data=>data.json())
