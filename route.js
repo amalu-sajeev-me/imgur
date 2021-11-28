@@ -80,4 +80,4 @@ router
       .catch((err) => console.log(err.message));
   });
 
-export { router as routes };
+export { router as routes, User };
