@@ -23,12 +23,14 @@
         fetch('https://api.imgur.com/3/upload', {
           method: 'POST',
           mode: 'no-cors',
-          credentials: 'omit',
+          body: formData,
           headers: { 
             'Authorization': 'Client-ID e86892e30f94c31',
-            'Connection': 'keep-alive'
-          },
-          body: formData
+            'Accept': 'application/json',
+            'Access-Control-Allow-Headers': 'Authorization, Content-Type, Accept, X-Mashape-Authorization, IMGURPLATFORM, IMGURUIDJAFO, SESSIONCOUNT, IMGURMWBETA, IMGURMWBETAOPTIN',
+            'Access-Control-Allow-Origin':'*',
+            
+          }
         })
         // .then(data=>data.json())
         .then(data=>{
