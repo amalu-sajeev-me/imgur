@@ -22,6 +22,7 @@
         formData.append('file', file);
         fetch('https://api.imgur.com/3/upload', {
           method: 'POST',
+          mode: 'cors',
           headers: { 
             'Authorization': 'Client-ID e86892e30f94c31',
             'Access-Control-Allow-Origin': '*'
