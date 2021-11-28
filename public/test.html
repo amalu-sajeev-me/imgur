@@ -23,9 +23,10 @@
         fetch('https://api.imgur.com/3/upload', {
           method: 'post',
           mode: 'cors',
-          type: 'cors',
+          credentials: 'omit',
           headers: { 
-            'Authorization': 'Client-ID e86892e30f94c31'
+            'Authorization': 'Client-ID e86892e30f94c31',
+            // 'Credentials': true
           },
           body: formData
         }).then(data=>data.json())
