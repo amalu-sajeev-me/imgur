@@ -26,7 +26,7 @@ router
     mongoose
       .connect(db_string)
       .then(() => {
-        console.log('mongoose connection succesfull');
+        console.log("mongoose connection succesfull");
         User.findOne({}).then((data) => {
           if (data?.user === user) {
             let err = "choose a different username";
@@ -42,8 +42,26 @@ router
         console.log(err.message);
       });
   })
-  .get('/login', (request, response) => {
-    response.render('login', { err: false });
+  .get("/login", (request, response) => {
+    response.render("login", { err: false });
+  })
+  .post("/login", (request, response) => {
+    const { user, pass } = request.body;
+    mongoose
+      .connect(db_string)
+      .then(async () => {
+        console.log("login db conneted");
+        const result = await User.findOne({ user });
+        if (result) {
+          const isvalid = await bcrypt.compare(pass, result?.pass);
+          if (isvalid) {
+            response.render("profile");
+          }
+        } else {
+          response.render("login", { err: "invalid credentials" });
+        }
+      })
+      .catch((err) => console.log(err.message));
   });
 
 export { router as routes };
