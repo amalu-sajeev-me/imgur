@@ -28,19 +28,30 @@ router
     const hash = await bcrypt.hash(pass, 12);
     mongoose
       .connect(db_string)
-      .then(() => {
+      .then(async () => {
         console.log("mongoose connection succesfull");
-        User.findOne({}).then((data) => {
-          if (data?.user === user) {
-            let err = "choose a different username";
-            response.render("index", { err });
-          } else {
-            request.session.user_id = result._id;
-            let newUser = new User({ user, pass: hash });
-            newUser.save();
-            response.redirect("/profile");
-          }
-        });
+        const result = await User.findOne({ user });
+        if (result?.user) {
+          let err = "choose a different username";
+          response.render('index', { err });
+        } else {
+          request.session.user_id = result._id;
+          let newUser = new User({ user, pass: hash });
+          newUser.save();
+          response.redirect('/profile');
+        }
+        // User.findOne({}).then((data) => {
+        //   if (data?.user === user) {
+        //     let err = "choose a different username";
+        //     response.render("index", { err });
+        //   } else {
+        //     request.session.user_id = result._id;
+        //     let newUser = new User({ user, pass: hash });
+        //     newUser.save();
+        //     response.redirect("/profile");
+        //   }
+        // }
+        // );
       })
       .catch((err) => {
         console.log(err.message);
