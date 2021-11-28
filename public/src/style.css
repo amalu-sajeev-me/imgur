@@ -59,3 +59,9 @@ button{
 button:hover{
   background-color: deeppink;
 }
+input{
+  border: 1px solid blueviolet;
+  padding: 4px;
+  border-radius: 5px;
+  outline: none;
+}

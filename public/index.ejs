@@ -17,10 +17,14 @@
       <br><br>
       <form action="/" method="post">
         <label for="username">username
-          <input name="user" type="text" id="username" value="user" autofocus>
+          <input name="user" type="text" id="username" value="" 
+          autofocus autocomplete="off" placeholder="set your new username" 
+          required />
         </label>
         <label for="password">password
-          <input name="pass" type="text" id="password" value="passme">
+          <input name="pass" type="text" id="password" value="" 
+          autocomplete="off" placeholder="set your new password" 
+          required />
         </label>
         <button id="signup">sign up</button>
         <% if(err) {%> 
