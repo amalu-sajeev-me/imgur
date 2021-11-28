@@ -11,6 +11,7 @@
   <form action="/" method="post">
     <input type="file" name="file" id="fileUpload">
   </form>
+  <div id="output"></div>
   <script>
       // 'Authorization': 'Client-ID e86892e30f94c31'
       // https://api.imgur.com/3/image
@@ -19,13 +20,16 @@
         let file = event.target.files[0];
         let formData = new FormData();
         formData.append('file', file);
-        fetch('https://api.imgur.com/3/image', {
+        fetch('https://api.imgur.com/3/upload', {
           method: 'post',
           headers: { 'Authorization': 'Client-ID e86892e30f94c31' },
           type: 'cors',
           body: formData
         }).then(data=>data.json())
-        .then(console.log)
+        .then(data=>{
+          console.log(data);
+          document.getElementById('output').innerText = JSON.stringify(data);
+        })
         .catch(err=>{
           console.log('baaad');
           console.log('error occured', err);
