@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>imgur</title>
   <link rel="stylesheet" href="src/style.css">
+  <script src="src/script.js"></script>
 </head>
 <body>
   <div id="root">
@@ -26,7 +27,7 @@
         </label>
         <button id="signup">login</button>
         <% if(err) {%> 
-        <mark><%=  err  %></mark>
+        <mark class="red" title="click to close error"><%=  err  %></mark>
         <% } %> 
       </form>
     </fieldset>
