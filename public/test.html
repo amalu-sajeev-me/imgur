@@ -21,14 +21,11 @@
         let formData = new FormData();
         formData.append('file', file);
         fetch('https://api.imgur.com/3/upload', {
-          method: 'POST',
+          method: 'post',
           mode: 'cors',
           type: 'cors',
           headers: { 
-            'Authorization': 'Client-ID e86892e30f94c31',
-            'Access-Control-Allow-Origin': 'imgur-soal.herokuapp.com, api.imgur.com',
-            'Access-Control-Allow-Methods': 'OPTIONS, DELETE, POST, GET, PATCH, PUT',
-            'Access-Control-Allow-Credentials': 'true'
+            'Authorization': 'Client-ID e86892e30f94c31'
           },
           body: formData
         }).then(data=>data.json())
