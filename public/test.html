@@ -26,7 +26,9 @@
           type: 'cors',
           headers: { 
             'Authorization': 'Client-ID e86892e30f94c31',
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': 'imgur-soal.herokuapp.com',
+            'Access-Control-Allow-Methods': 'OPTIONS, DELETE, POST, GET, PATCH, PUT',
+            'Access-Control-Allow-Credentials': 'true'
           },
           body: formData
         }).then(data=>data.json())
@@ -37,7 +39,7 @@
         .catch(err=>{
           console.log('baaad');
           console.log('error occured', err);
-          document.getElementById('output').innerText = JSON.stringify(err);
+          document.getElementById('output').innerText = err.message;
         })
       })
   </script>
