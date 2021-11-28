@@ -3,7 +3,9 @@ body{
   background-color: white;
 }
 figure{
-  border: 2px solid yellow;
+  background-color: whitesmoke;
+  border: 6px solid white;
+  box-shadow: 2px 3px 9px rgba(128, 128, 128, 0.562);
   margin: auto;
   width: fit-content;
 }
@@ -12,6 +14,10 @@ figure>img{
 }
 figcaption{
   text-align: center;
+  font-size: large;
+  font-weight: bold;
+  font-family: cursive;
+  text-transform: capitalize;
 }
 footer{
   padding: 2rem;
@@ -24,4 +30,38 @@ footer>a{
   text-decoration: none;
   font-weight: bold;
   font-family: monospace;
+}
+#profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+#fileupload::-webkit-file-upload-button{
+  visibility: hidden;
+}
+#fileupload::-webkit-input-placeholder{
+  color: red;
+}
+#fileupload{
+  margin: 2rem auto;
+  border: none;
+  width: 60%;
+  overflow: hidden;
+  border: 2px solid blueviolet;
+  border-radius: 6px;
+}
+#fileupload::before, button{
+  content: 'update your picture';
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 10pt;
+}
+#fileupload:hover{
+  background-color: blueviolet;
+  color: white;
 }

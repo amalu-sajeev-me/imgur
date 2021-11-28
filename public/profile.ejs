@@ -18,6 +18,11 @@
           <%= name %> 
         </figcaption>
       </figure>
+      <form action="/profile" method="post">
+        <input type="file" name="upload" id="fileupload" 
+        onchange="this.parentElement.submit()" >
+        <!-- <button>upload</button> -->
+      </form>
     </div>
   </div>
   <footer>
