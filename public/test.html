@@ -29,7 +29,8 @@
             'Connection': 'keep-alive'
           },
           body: formData
-        }).then(data=>data.json())
+        })
+        // .then(data=>data.json())
         .then(data=>{
           console.log(data);
           document.getElementById('output').innerText = JSON.stringify(data);
