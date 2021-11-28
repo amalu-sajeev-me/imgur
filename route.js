@@ -1,5 +1,6 @@
 import { Router } from "express";
 import mongoose from "mongoose";
+import session from "express-session";
 const { Schema, model } = mongoose;
 import bcrypt from "bcrypt";
 const db_string = `mongodb+srv://dev:passmein@cluster0.gsr2u.mongodb.net/imgur?retryWrites=true&w=majority`;
@@ -18,7 +19,9 @@ const User = model("User", userSchema);
 const router = Router();
 router
   .get("/", (request, response) => {
-    response.render("index", { err: false });
+    const { user_id } = request.session;
+    if (user_id) response.redirect('/profile');
+    else response.render("index", { err: false });
   })
   .post("/", async (request, response) => {
     const { user, pass } = request.body;
@@ -32,6 +35,7 @@ router
             let err = "choose a different username";
             response.render("index", { err });
           } else {
+            request.session.user_id = result._id;
             let newUser = new User({ user, pass: hash });
             newUser.save();
             response.redirect("/profile");
@@ -55,7 +59,8 @@ router
         if (result) {
           const isvalid = await bcrypt.compare(pass, result?.pass);
           if (isvalid) {
-            response.render("profile");
+            request.session.user_id = result._id;
+            response.redirect("/profile");
           }
         } else {
           response.render("login", { err: "invalid credentials" });
