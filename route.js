@@ -5,6 +5,12 @@ const { Schema, model } = mongoose;
 import bcrypt from "bcrypt";
 const db_string = `mongodb+srv://dev:passmein@cluster0.gsr2u.mongodb.net/imgur?retryWrites=true&w=majority`;
 // MongoDB Database Schema
+const profileSchema = new Schema({
+  firstName: String,
+  lastName: String,
+  pic: String,
+  about: String
+})
 const userSchema = new Schema({
   user: {
     type: String,
@@ -14,6 +20,7 @@ const userSchema = new Schema({
     type: String,
     required: [true, "you must provide a password"],
   },
+  profile: [profileSchema]
 });
 const User = model("User", userSchema);
 const router = Router();
@@ -40,18 +47,6 @@ router
           newUser.save();
           response.redirect("/profile");
         }
-        // User.findOne({}).then((data) => {
-        //   if (data?.user === user) {
-        //     let err = "choose a different username";
-        //     response.render("index", { err });
-        //   } else {
-        //     request.session.user_id = result._id;
-        //     let newUser = new User({ user, pass: hash });
-        //     newUser.save();
-        //     response.redirect("/profile");
-        //   }
-        // }
-        // );
       })
       .catch((err) => {
         console.log(err.message);

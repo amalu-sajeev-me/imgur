@@ -8,6 +8,14 @@
   <title>
     <%  %>
   </title>
+  <script>
+    document.addEventListener('DOMContentLoaded', event=>{
+      document.querySelector('#fileupload').addEventListener('change', ()=>{
+        document.forms[0].submit();
+        // console.log('sending file to server');
+      })
+    })
+  </script>
 </head>
 <body>
   <div id="root">
@@ -18,9 +26,8 @@
           <%= name %> 
         </figcaption>
       </figure>
-      <form action="/profile" method="post">
-        <input type="file" name="upload" id="fileupload" 
-        onchange="this.parentElement.submit()" >
+      <form action="/profile" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" id="fileupload" >
         <!-- <button>upload</button> -->
       </form>
     </div>
