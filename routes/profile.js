@@ -16,14 +16,17 @@ router
     } else {
       mongoose.connect(db_string).then(async () => {
         const result = await User.findOne({ _id: new ObjectId(user_id) });
-        console.log(result, user_id);
-        response.render("profile", { id: user_id, name: result?.user });
+        const { pic } = result?.profile[0] || "src/img/user.png";
+        response.render("profile", { id: user_id, name: result?.user , pic});
       });
     }
   })
   .post("/", upload.single("image"), (request, response) => {
-    console.log(request.file.link);
-    response.send(`<a href="${request.file.link}">your image</a>`);
+    let { user_id } = request.session;
+    mongoose.connect(db_string).then(async () => {
+      await User.findByIdAndUpdate(user_id, { profile: { pic: request.file.link } });
+      response.redirect('/profile');
+    })
   })
   .get("/logout", (request, response) => {
     request.session.destroy();
